@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'yaml'
+current_dir = File.dirname(File.expand_path(__FILE__))
+settings = YAML.load_file("#{current_dir}/config.yml")
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -11,9 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "ubuntu/trusty64"
 
-  # Update the lines below with your preferred local hostname and IP address.
-  config.vm.network "private_network", ip: "192.168.10.10"
-  config.vm.hostname = "local.example.com"
+  # Hostname / IP settings are loaded from config.yml.
+  config.vm.network "private_network", ip: settings['ip']
+  config.vm.hostname = settings['hostname']
   config.vm.synced_folder "..", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
 
   # Improve performance.

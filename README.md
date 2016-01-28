@@ -12,7 +12,7 @@ the following steps:
 
 * Install [Vagrant](https://www.vagrantup.com/).
 * Copy the entire `/private` directory to the root directory of your Drupal codebase.
-* If desired, edit the `/private/Vagrantfile` and set your preferred local hostname and IP address (lines 15 and 16).
+* Copy the `/private/example.config.yml` to `/private/config.yml`, and edit it with your preferred hostname and IP address.
 * From the `/private` directory, run `vagrant up`. This will create and provision the VM.
 * Add a new line to your `/etc/hosts` file for the new local URL / IP: `192.168.10.10 local.example.com`.
 * Create or load your site database into the VM `mysql` server. For testing purposes the provisioner creates a user and database named `vagrant`.
