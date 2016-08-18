@@ -14,7 +14,14 @@ the following steps:
 * Copy the entire `/private` directory to the root directory of your Drupal codebase.
 * Copy the `/private/example.config.yml` to `/private/config.yml`, and edit it with your preferred hostname and IP address.
 * From the `/private` directory, run `vagrant up`. This will create and provision the VM.
-* Add a new line to your `/etc/hosts` file for the new local URL / IP: `192.168.10.10 local.example.com`.
+* Run `vagrant plugin install vagrant-hostsupdater` to install a plugin to handle adding your host to `/etc/hosts`.
 * Create or load your site database into the VM `mysql` server. For testing purposes the provisioner creates a user and database named `vagrant`.
 * Connect to your new test site in your browser at the URL you've chosen.
 * Your site code is mounted on the Vagrant VM in the `/vagrant` directory.
+
+## Bonuses
+
+In the `/private` directory there is a folder for things to add to your docroot.
+
+* `tag_dev` -  A module that supplies customizable `drush golocal`, `drush godev`, and `drush gotest` commands. Feel free to add onto them for project specific reasons to make your development experience smoother.
+* `setup.sh` - A basic site setup script that enables development modules after site install.
