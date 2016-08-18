@@ -26,14 +26,30 @@ function tag_dev_drush_command() {
 }
 
 /**
- * Put the site in Acquia testing server mode.
+ * Put the site in remote testing server mode.
  */
 function drush_tag_dev_gotest() {
   drush_tag_dev_golocal();
+
+  // Disable devel, but leave anything else.
+  $disable = array(
+    'devel',
+    'kint',
+  );
+  foreach ($disable as $module) {
+    \Drupal::service('module_installer')->uninstall([$module]);
+
+    if (\Drupal::moduleHandler()->moduleExists($module)) {
+      drush_log(dt('@module failed to uninstall!', array('@module' => $module)), 'error');
+    }
+    else {
+      drush_log(dt('@module correctly disabled!', array('@module' => $module)), 'ok');
+    }
+  }
 }
 
 /**
- * Put the site in Acquia development server mode.
+ * Put the site in remote development server mode.
  */
 function drush_tag_dev_godev() {
   drush_tag_dev_golocal();
@@ -77,10 +93,12 @@ function drush_tag_dev_golocal() {
   if (\Drupal::moduleHandler()->moduleExists('devel')) {
     $role = \Drupal\user\Entity\Role::load('authenticated');
     $role->grantPermission('access devel information');
+    $role->grantPermission('execute php code');
     $role->save();
 
     $role = \Drupal\user\Entity\Role::load('anonymous');
     $role->grantPermission('access devel information');
+    $role->grantPermission('execute php code');
     $role->save();
   }
 

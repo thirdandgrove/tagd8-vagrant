@@ -24,3 +24,4 @@ the following steps:
 In the `/private` directory there is a folder for things to add to your docroot.
 
 * `tag_dev` -  A module that supplies customizable `drush golocal`, `drush godev`, and `drush gotest` commands. Feel free to add onto them for project specific reasons to make your development experience smoother.
+* `setup.sh` - A basic site setup script that enables development modules after site install.
