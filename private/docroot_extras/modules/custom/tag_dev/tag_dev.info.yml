@@ -1,0 +1,5 @@
+name: Third And Grove Drupal 8 Development module
+type: module
+description: Provides configurations for development.
+core: 8.x
+package: Third And Grove
