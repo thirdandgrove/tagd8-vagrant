@@ -156,7 +156,7 @@ class drush {
 
         "drush-install":
             environment => ["COMPOSER_HOME=/home/vagrant/.composer"],
-             command => '/usr/local/bin/composer global require drush/drush:dev-master',
+             command => '/usr/local/bin/composer global require drush/drush',
             unless => '/bin/ls /usr/share/php/drush';
 
         "console-table-install":
