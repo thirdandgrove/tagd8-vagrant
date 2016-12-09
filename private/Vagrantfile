@@ -40,6 +40,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       mem = 1024
     end
 
+    # For people with more 16GB of RAM, limit at 4GB.
+    if mem > 4096
+      mem = 4096
+    end
+
     v.customize ["modifyvm", :id, "--memory", mem]
     v.customize ["modifyvm", :id, "--cpus", cpus]
     v.customize ["modifyvm", :id, "--ioapic", "on"]
