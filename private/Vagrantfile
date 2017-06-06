@@ -25,6 +25,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
 
+    v.name = settings['name']
+
     # Give VM 1/4 system memory & access to all cpu cores on the host
     if host =~ /darwin/
       cpus = `sysctl -n machdep.cpu.core_count`.to_i
