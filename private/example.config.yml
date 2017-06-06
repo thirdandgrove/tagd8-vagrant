@@ -3,5 +3,6 @@
 # Copy this file to config.yml and change as needed.
 #
 ---
+name: example_dev
 hostname: local.example.com
 ip: 192.168.10.10
